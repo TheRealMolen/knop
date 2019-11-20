@@ -14,6 +14,7 @@ module.exports = {
     // configure workbox
     workboxPluginMode: 'GenerateSW',
     workboxOptions: {
+      importWorkboxFrom: 'local',
       skipWaiting: false,
       runtimeCaching: [
         {
