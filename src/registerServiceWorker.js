@@ -28,5 +28,11 @@ if (process.env.NODE_ENV === 'production') {
     error(error) {
       console.error('Error during service worker registration:', error);
     },
+    sync(event) {
+      console.log(`==> SW sync! ${JSON.stringify(event)}`);
+    },
   });
+}
+else {
+  console.log('skipping sw install because of dev env');
 }

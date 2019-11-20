@@ -3,19 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "client": "vue-cli-service serve",
+    "server": "cd server && nodemon --exec babel-node index.js",
+    "prod": "cd server && cross-env NODE_ENV=production nodemon --exec babel-node index.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "cross-env": "^6.0.3",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.20.0",
+    "lowdb": "^1.0.0",
+    "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/node": "^7.7.0",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-pwa": "^3.11.0",
@@ -28,8 +37,10 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "https": "^1.0.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "morgan": "^1.9.1",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
@@ -41,7 +52,13 @@
       "plugin:vue/essential",
       "@vue/airbnb"
     ],
-    "rules": {},
+    "rules": {
+      "brace-style": [
+        1,
+        "stroustrup"
+      ],
+      "no-console": 0
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     },
