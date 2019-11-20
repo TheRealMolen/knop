@@ -43,8 +43,9 @@ else {
 
 const port = process.env.KNOP_PORT || 9889;
 const server = https.createServer({
-  key: readFileSync('certs/selfsign.key'),
-  cert: readFileSync('certs/selfsign.cert'),
+  key: readFileSync('certs/localhost.key'),
+  cert: readFileSync('certs/localhost.crt'),
+  passphrase: 'localhost',
 }, app);
 
 server.listen(port, () => {

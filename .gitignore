@@ -20,4 +20,8 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-server/certs/*
+
+# local testing certs
+server/certs/*.key
+server/certs/*.crt
+server/certs/*.pfx
