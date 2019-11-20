@@ -73,6 +73,9 @@
       }
     ]
   },
+  "eslintIgnore": [
+    "dist/*"
+  ],
   "postcss": {
     "plugins": {
       "autoprefixer": {}
