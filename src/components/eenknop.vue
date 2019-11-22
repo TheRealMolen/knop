@@ -52,6 +52,7 @@ export default {
       stopwatch: {
         state: 'idle',
         startedAt: null,
+        elapsedMs: -1,
       },
     };
   },
@@ -79,8 +80,9 @@ export default {
         return '-';
       }
 
-      const runtime = moment().diff(this.stopwatch.startedAt);
-      return `${runtime}ms`;
+      const ms = this.stopwatch.elapsedMs;
+      const seconds = (Math.floor(ms / 10) / 100);
+      return `${seconds}s`;
     },
   },
 
@@ -109,11 +111,16 @@ export default {
             .then(() => {
               this.stopwatch.startedAt = null;
               this.stopwatch.state = 'idle';
+              this.stopwatch.elapsedMs = -1;
             });
         }
         else {
           this.stopwatch.startedAt = moment();
           this.stopwatch.state = 'running';
+          this.stopwatch.elapsedMs = 0;
+          setInterval(() => {
+            this.stopwatch.elapsedMs = moment().diff(this.stopwatch.startedAt);
+          }, 100);
         }
       }
     },
