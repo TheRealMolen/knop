@@ -20,10 +20,10 @@ module.exports = {
         {
           urlPattern: /api\/knop/,
           method: 'POST',
-          handler: 'networkFirst',
+          handler: 'networkOnly',
           options: {
             backgroundSync: {
-              name: 'druk-queue',
+              name: 'knop-queue',
               options: {
                 maxRetentionTime: 30 * 24 * 60 * 60,
               },
@@ -33,7 +33,7 @@ module.exports = {
         {
           urlPattern: /api\/drukjes/,
           method: 'POST',
-          handler: 'networkFirst',
+          handler: 'networkOnly',
           options: {
             backgroundSync: {
               name: 'druk-queue',
