@@ -5,6 +5,7 @@ module.exports = {
     host: 'localhost',
     port: 1812,
     https: true,
+    pfx: 'server/certs/localhost.pfx',
   },
 
   pwa: {
