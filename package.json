@@ -55,8 +55,16 @@
     ],
     "rules": {
       "brace-style": [
-        1,
+        2,
         "stroustrup"
+      ],
+      "arrow-parens": [
+        2,
+        "as-needed"
+      ],
+      "no-unused-vars": [
+        2,
+        { "argsIgnorePattern": "^_" }
       ],
       "no-console": 0
     },
