@@ -15,6 +15,8 @@ export default new Vuex.Store({
 
     setInstallEvent(state, evt) {
       state.installEvent = evt;
+      console.log('Captured install event');
+      console.log(state);
     },
 
     setClientKey(state, key) {
