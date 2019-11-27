@@ -39,11 +39,6 @@ app.post('/api/drukjes', (req, res) => {
 });
 
 
-app.get('/mrhm', (req, res) => {
-  console.log('got');
-  res.send('Hello HTTPS!');
-});
-
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../dist'));
