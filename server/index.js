@@ -16,12 +16,25 @@ app.use(express.json());
 const adapter = new FileSync('../db.json');
 const db = low(adapter);
 
-db.defaults({
-  knopjes: {},
-}).write();
+db.defaults({}).write();
 
 app.post('/api/drukjes', (req, res) => {
-  console.log(req.body);
+  const druk = req.body;
+  const { knop } = druk;
+  delete druk.knop;
+
+  const knopRow = db.get(knop);
+  const knopRec = knopRow.value();
+
+  if (knopRec) {
+    knopRec.drukjes.push(druk);
+    knopRow.assign({ drukjes: knopRec.drukjes }).write();
+  }
+  else {
+    const newRec = { knop, drukjes: [druk] };
+    db.set(knop, newRec).write();
+  }
+
   res.send('ok');
 });
 
