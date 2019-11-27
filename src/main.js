@@ -5,6 +5,14 @@ import store from './store';
 import './registerServiceWorker';
 
 
+// listen for the event that allows users to install
+window.addEventListener('beforeinstallprompt', e => {
+  // Stash the event so it can be triggered later.
+  store.commit('setInstallEvent', e);
+});
+
+
+
 function loadOrGenClientKey() {
   const loaded = localStorage.getItem('client-key');
   if (loaded) {
@@ -22,6 +30,7 @@ function loadOrGenClientKey() {
 
 // make certain we have a client key
 store.commit('setClientKey', loadOrGenClientKey());
+
 
 Vue.config.productionTip = false;
 

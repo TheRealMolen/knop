@@ -6,11 +6,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    installEvent: null,
     clientKey: null,
 
     druks: {},
   },
   mutations: {
+
+    setInstallEvent(state, evt) {
+      state.installEvent = evt;
+    },
 
     setClientKey(state, key) {
       // eslint-disable-next-line no-console
@@ -29,10 +34,10 @@ export default new Vuex.Store({
   },
 
   actions: {
-    onDruk({ commit, state }, config) {
+    onDruk({ commit, state }, { config, payload }) {
       const druk = {
         client: state.clientKey,
-        ...config.payload,
+        ...payload,
       };
 
       // save locally immediately
@@ -41,13 +46,16 @@ export default new Vuex.Store({
         druk,
       });
 
+      // add the knop name for the server (should be a url param?)
+      druk.knop = config.name;
+
       // also send to the server (this should get cached by our service worker...?)
       axios.post('/api/drukjes', druk)
-        .then((response) => {
-          console.log('success posting a drukje!');
-          console.log(response);
+        .then(_response => {
+          console.log('succes posting a drukje!');
+          console.log(druk);
         })
-        .catch((err) => {
+        .catch(err => {
           console.warn(`Failed to upload a drukje: ${JSON.stringify(druk)}`);
           console.log(err);
         });
