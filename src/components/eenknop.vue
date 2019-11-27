@@ -120,7 +120,7 @@ export default {
           this.stopwatch.elapsedMs = 0;
           setInterval(() => {
             this.stopwatch.elapsedMs = moment().diff(this.stopwatch.startedAt);
-          }, 100);
+          }, 30);
         }
       }
     },
