@@ -66,7 +66,8 @@
         2,
         { "argsIgnorePattern": "^_" }
       ],
-      "no-console": 0
+      "no-console": 0,
+      "no-multiple-empty-lines": 0
     },
     "parserOptions": {
       "parser": "babel-eslint"
